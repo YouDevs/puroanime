@@ -15,4 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+Route::get('/', [App\Http\Controllers\AnimeController::class, 'index'])->name('anime.index');
+Route::get('/{id}', [App\Http\Controllers\AnimeController::class, 'show'])->name('anime.show');
+Route::get('/{id}/episodios', [App\Http\Controllers\AnimeController::class, 'show'])->name('anime.episodes');
+Route::post('/{id}/rating', [App\Http\Controllers\AnimeController::class, 'storeRating'])->name('anime.rating.store');
