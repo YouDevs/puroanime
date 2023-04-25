@@ -1,0 +1,41 @@
+@extends('layouts.admin')
+
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center my-3">
+                    <h1>Listado de animes</h1>
+                    <a href="{{ route('admin.anime.create') }}" class="btn btn-primary">Crear anime</a>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($animes as $anime)
+                            <tr>
+                                <td>{{ $anime->id }}</td>
+                                <td>{{ $anime->title }}</td>
+                                <td>{{ $anime->description }}</td>
+                                <td>
+                                    <a href="{{ route('admin.anime.edit', $anime) }}" class="btn btn-sm btn-warning">Editar</a>
+                                    <form action="{{ route('admin.anime.destroy', $anime) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este anime?')">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+@endsection

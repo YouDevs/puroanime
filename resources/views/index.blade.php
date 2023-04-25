@@ -13,14 +13,14 @@
 
             </h1>
             <p>{{$anime->description}}</p>
-            <div class="streaming-platforms">
+            {{-- <div class="streaming-platforms">
                 @php
                   $platforms = json_decode($anime->streaming_platforms);
                 @endphp
                 @foreach($platforms as $platform)
                   <a href="#" class="platform bg-warning">{{ $platform }}</a>
                 @endforeach
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>

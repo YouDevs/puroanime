@@ -29,23 +29,50 @@
     color: #ffc107;
 }
 
+.hero-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
 </style>
 @endsection
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h1>{{$anime->title}}</h1>
-            <p>{{$anime->description}}</p>
-            <img src="{{asset($anime->cover_image)}}" alt="{{$anime->title}}" class="img-fluid">
+    <div class="hero-banner" style="background-image: url('{{asset('images/naruto-shippuden.webp')}}');">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+          <h1 class="fs-1">{{$anime->title}}</h1>
+          <p class="fs-4">{{$anime->description}}</p>
         </div>
     </div>
 
     <div class="row mt-5">
         <div class="col-12">
             <h2>Episodios</h2>
-            <table class="table table-striped">
+            <table class="table table-striped table-responsive">
                 <thead>
                     <tr>
                         <th>Episodio</th>
