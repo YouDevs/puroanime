@@ -18,11 +18,6 @@
                                 Animes
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Episodios
-                            </a>
-                        </li>
                         <!-- Agrega más elementos de menú aquí -->
                     </ul>
                 </div>

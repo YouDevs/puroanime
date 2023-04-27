@@ -11,6 +11,7 @@ class AnimeController extends Controller
     public function index()
     {
         $animes = Anime::all();
+        // $platforms = $platforms;
         return view('index', ['animes' => $animes]);
     }
 

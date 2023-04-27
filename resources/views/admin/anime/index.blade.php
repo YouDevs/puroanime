@@ -24,6 +24,8 @@
                                 <td>{{ $anime->title }}</td>
                                 <td>{{ $anime->description }}</td>
                                 <td>
+                                    <a class="btn btn-info" href="{{route('episodes.index', $anime->id)}}">Ver Episodios</a>
+
                                     <a href="{{ route('admin.anime.edit', $anime) }}" class="btn btn-sm btn-warning">Editar</a>
                                     <form action="{{ route('admin.anime.destroy', $anime) }}" method="POST" class="d-inline">
                                         @csrf
