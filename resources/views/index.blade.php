@@ -6,7 +6,7 @@
       @foreach ($animes as $anime)
       <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
         <div class="card card-anime">
-          <img src="{{asset('images/naruto.png')}}" class="card-img-top img-fluid" alt="">
+          <img src="{{ $anime->thumbnail_image }}" class="card-img-top img-fluid" alt="">
           <div class="card-body">
             <h1>
               {{$anime->title}} <a href="{{ route('anime.show', $anime->id) }}" class="btn btn-primary btn-sm">Ver +</a>

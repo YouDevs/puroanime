@@ -53,7 +53,6 @@ class AnimeController extends Controller
 
     public function update(Request $request, Anime $anime)
     {
-        // Validación
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
@@ -61,32 +60,24 @@ class AnimeController extends Controller
             'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        // Procesar y almacenar la imagen de portada y miniatura si se proporcionan
         if ($request->hasFile('cover_image')) {
-            $coverImage = $request->file('cover_image');
-            $coverImageName = time() . '-' . $coverImage->getClientOriginalName();
-            $coverImage->storeAs('public/anime-covers', $coverImageName);
-            $anime->cover_image = 'anime-covers/' . $coverImageName;
+            $coverImagePath = $request->file('cover_image')->store('public/animes/cover_images');
+            $anime->cover_image = Storage::url($coverImagePath);
         }
 
         if ($request->hasFile('thumbnail_image')) {
-            $thumbnailImage = $request->file('thumbnail_image');
-            $thumbnailImageName = time() . '-' . $thumbnailImage->getClientOriginalName();
-            $thumbnailImage->storeAs('public/anime-thumbnails', $thumbnailImageName);
-            $anime->thumbnail_image = 'anime-thumbnails/' . $thumbnailImageName;
+            $thumbnailImagePath = $request->file('thumbnail_image')->store('public/animes/thumbnail_images');
+            $anime->thumbnail_image = Storage::url($thumbnailImagePath);
         }
 
-        // Actualizar campos
         $anime->title = $request->input('title');
         $anime->description = $request->input('description');
 
-        // Guardar cambios
         $anime->save();
 
-        // Redirigir al listado de animes
         return redirect()->route('admin.anime.index')->with('success', 'Anime updated successfully!');
-
     }
+
 
 
 

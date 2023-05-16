@@ -85,9 +85,21 @@
                 <tbody>
                     @foreach($anime->episodes as $episode)
                         <tr>
-                            <td>{{ $episode->number }}</td>
+                            <td>{{ $episode->episode_number }}</td>
                             <td>{{ $episode->title }}</td>
-                            <td>{{ ucfirst($episode->type) }}</td>
+                            <td>
+                                @if ($episode->type == 'canon')
+                                    <p class="text-success fw-bold">{{ ucfirst($episode->type) }}</p>
+                                @elseif($episode->type == 'filler')
+                                    <p class="text-danger fw-bold">
+                                        Relleno
+                                    </p>
+                                @else
+                                    <p class="text-primary fw-bold">
+                                       Mixto
+                                    </p>
+                                @endif
+                            </td>
                             <td>{{ $episode->ratings->avg('rating') }}</td>
                             <td>
                                 {{-- Aquí puedes agregar el formulario para calificar el episodio --}}
@@ -95,13 +107,15 @@
                                     @csrf
                                     <input type="hidden" name="anime_id" value="{{$anime->id}}">
                                     <input type="hidden" name="episode_id" value="{{$episode->id}}">
+                                        @php
+                                            $rating = $episode->ratings()->where('user_id', Auth::id())->first();
+                                        @endphp
                                     <div class="rating">
                                         @for ($i = 5; $i >= 1; $i--)
-                                            <input type="radio" name="rating" id="rating-{{$episode->id}}-{{$i}}" value="{{$i}}" class="rating-input">
+                                            <input type="radio" name="rating" id="rating-{{$episode->id}}-{{$i}}" value="{{$i}}" class="rating-input" {{ $rating && $rating->rating == $i ? 'checked' : '' }}>
                                             <label for="rating-{{$episode->id}}-{{$i}}" class="rating-star"><i class="fas fa-star"></i></label>
                                         @endfor
                                     </div>
-                                    {{-- <button type="submit" class="btn btn-primary">Enviar calificación</button> --}}
                                 </form>
                             </td>
                         </tr>
