@@ -99,7 +99,7 @@
     <div class="row mt-5">
         <div class="col-12">
             <h2>Episodios</h2>
-            <table class="table table-striped table-responsive">
+            <table class="table table-responsive color-light">
                 <thead>
                     <tr>
                         <th>Episodio</th>
@@ -116,13 +116,13 @@
                             <td>{{ $episode->title }}</td>
                             <td>
                                 @if ($episode->type == 'canon')
-                                    <p class="text-success fw-bold">{{ ucfirst($episode->type) }}</p>
+                                    <p class="color-success fw-bold">{{ ucfirst($episode->type) }}</p>
                                 @elseif($episode->type == 'filler')
-                                    <p class="text-danger fw-bold">
+                                    <p class="color-danger fw-bold">
                                         Relleno
                                     </p>
                                 @else
-                                    <p class="text-primary fw-bold">
+                                    <p class="color-blue fw-bold">
                                        Mixto
                                     </p>
                                 @endif

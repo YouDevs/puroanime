@@ -1,0 +1,121 @@
+$dark-primary: #0F172A;
+$dark-secondary: #1E293B;
+$light-primary: #F3F4F6;
+
+$success: #34D399;
+$danger: #FB7185;
+$blue: #38BDF8;
+
+// color pink
+//      #E879F9 - 701A75
+// color green
+//      A3E635 - 365314
+// color blue
+//      38BDF8 - 0C4A6E
+// color red
+//      FB7185 - 881337
+
+body {
+    color: $light-primary;
+}
+
+.color-light {
+    color: $light-primary;
+}
+.color-success {
+    color: $success;
+}
+.color-blue {
+    color: $blue;
+}
+.color-danger {
+    color: $danger;
+}
+
+.bg-dark-primary {
+    background-color: $dark-primary
+}
+.bg-dark-secondary {
+    background-color: $dark-secondary
+}
+
+.navbar-brand {
+    color: $light-primary !important;
+}
+.nav-link {
+    color: $light-primary !important;
+}
+
+.card-body {
+    background-color: $dark-secondary;
+}
+
+a:hover {
+    color: $light-primary;
+}
+
+
+// a {
+//     color: var(--primary-color);
+// }
+
+// a:hover {
+//     color: var(--secondary-color);
+// }
+
+// .btn-primary {
+//     background-color: var(--primary-color);
+//     border-color: var(--primary-color);
+// }
+
+// .btn-primary:hover {
+//     background-color: var(--secondary-color);
+//     border-color: var(--secondary-color);
+// }
+
+// .navbar {
+//     background-color: var(--contrast-color);
+// }
+
+
+
+
+// // Estilos personalizados
+.card-anime {
+    background-color: $dark-secondary;
+    border: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+    .card-img {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .card-body {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 1.5rem;
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: #777;
+        }
+
+        .streaming-platforms {
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+    }
+}
