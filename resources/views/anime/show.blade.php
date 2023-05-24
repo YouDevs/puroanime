@@ -56,16 +56,43 @@
   text-align: center;
 }
 
+.streaming-platforms {
+    list-style-type: none;
+    padding: 0;
+}
+
+.streaming-platforms li {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
 </style>
 @endsection
 
 @section('content')
 <div class="container">
-    <div class="hero-banner" style="background-image: url('{{asset('images/naruto-shippuden.webp')}}');">
+    <div class="hero-banner" style="background-image: url('{{$anime->cover_image}}');">
         <div class="hero-overlay"></div>
         <div class="container hero-content">
           <h1 class="fs-1">{{$anime->title}}</h1>
           <p class="fs-4">{{$anime->description}}</p>
+          <div class="mt-4">
+            @php
+                $platforms = json_decode($anime->streaming_platforms);
+            @endphp
+            @if ($platforms)
+                <h3>Disponible en:</h3>
+                <ul class="streaming-platforms">
+                    @foreach($platforms as $platform)
+                        <li>{{$platform}}</li>
+                    @endforeach
+                </ul>
+            @endif
+          </div>
         </div>
     </div>
 
