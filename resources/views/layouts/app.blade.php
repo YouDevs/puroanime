@@ -17,7 +17,7 @@
     @yield('styles')
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
 </head>
 <body>
     <div id="app">
@@ -61,12 +61,19 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Cerrar Sesión
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+
+                                    @if (Auth::check() && Auth::user()->is_admin)
+                                        <a class="dropdown-item" href="{{ route('admin.anime.index') }}">
+                                            Admin
+                                        </a>
+                                    @endif
+
                                 </div>
                             </li>
                         @endguest

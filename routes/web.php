@@ -20,8 +20,7 @@ Route::get('/{id}', [App\Http\Controllers\AnimeController::class, 'show'])->name
 Route::get('/{id}/episodios', [App\Http\Controllers\AnimeController::class, 'show'])->name('anime.episodes');
 Route::post('/{id}/rating', [App\Http\Controllers\AnimeController::class, 'storeRating'])->name('anime.rating.store');
 
-
-Route::prefix('admin')->group(function () {
+Route::middleware('is_admin')->prefix('admin')->group(function () {
     // Rutas de animes aquí...
     Route::get('/anime', [App\Http\Controllers\Admin\AnimeController::class, 'index'])->name('admin.anime.index');
     Route::get('/anime/create', [App\Http\Controllers\Admin\AnimeController::class, 'create'])->name('admin.anime.create');

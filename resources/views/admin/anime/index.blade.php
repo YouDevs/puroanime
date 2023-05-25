@@ -8,7 +8,7 @@
                     <h1>Listado de animes</h1>
                     <a href="{{ route('admin.anime.create') }}" class="btn btn-primary">Crear anime</a>
                 </div>
-                <table class="table table-striped">
+                <table class="table table-responsive color-light">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -24,7 +24,7 @@
                                 <td>{{ $anime->title }}</td>
                                 <td>{{ $anime->description }}</td>
                                 <td>
-                                    <a class="btn btn-info" href="{{route('episodes.index', $anime->id)}}">Ver Episodios</a>
+                                    <a class="btn btn-sm btn-info" href="{{route('episodes.index', $anime->id)}}">Ver Episodios</a>
 
                                     <a href="{{ route('admin.anime.edit', $anime) }}" class="btn btn-sm btn-warning">Editar</a>
                                     <form action="{{ route('admin.anime.destroy', $anime) }}" method="POST" class="d-inline">

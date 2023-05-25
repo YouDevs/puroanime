@@ -5,7 +5,7 @@
         <h1 class="mb-4">{{$anime->title}}: Lista de episodios</h1>
         <a href="{{route('episodes.create', $anime->id)}}" class="btn btn-primary mb-3">Crear nuevo episodio</a>
 
-        <table class="table">
+        <table class="table table-responsive color-light">
             <thead>
                 <tr>
                     <th scope="col">#</th>

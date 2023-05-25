@@ -1,11 +1,3 @@
-$dark-primary: #0F172A;
-$dark-secondary: #1E293B;
-$light-primary: #F3F4F6;
-
-$success: #34D399;
-$danger: #FB7185;
-$blue: #38BDF8;
-
 // color pink
 //      #E879F9 - 701A75
 // color green
@@ -17,6 +9,8 @@ $blue: #38BDF8;
 
 body {
     color: $light-primary;
+    background-color: #0F172A;
+    min-height: 100vh;
 }
 
 .color-light {
