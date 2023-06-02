@@ -24,10 +24,10 @@ Route::middleware('is_admin')->prefix('admin')->group(function () {
     // Rutas de animes aquí...
     Route::get('/anime', [App\Http\Controllers\Admin\AnimeController::class, 'index'])->name('admin.anime.index');
     Route::get('/anime/create', [App\Http\Controllers\Admin\AnimeController::class, 'create'])->name('admin.anime.create');
-    Route::get('/anime/{anime}/edit', [App\Http\Controllers\Admin\AnimeController::class, 'edit'])->name('admin.anime.edit');
-    Route::get('/anime/{anime}/destroy', [App\Http\Controllers\Admin\AnimeController::class, 'destroy'])->name('admin.anime.destroy');
+    Route::get('/anime/{id}/edit', [App\Http\Controllers\Admin\AnimeController::class, 'edit'])->name('admin.anime.edit');
+    Route::delete('/anime/destroy', [App\Http\Controllers\Admin\AnimeController::class, 'destroy'])->name('admin.anime.destroy');
     Route::post('/anime/store', [App\Http\Controllers\Admin\AnimeController::class, 'store'])->name('admin.anime.store');
-    Route::put('/anime/{anime}/update', [App\Http\Controllers\Admin\AnimeController::class, 'update'])->name('admin.anime.update');
+    Route::put('/anime/update', [App\Http\Controllers\Admin\AnimeController::class, 'update'])->name('admin.anime.update');
 
     Route::prefix('anime/{anime}')->group(function () {
         Route::resource('episodes', App\Http\Controllers\Admin\EpisodeController::class);

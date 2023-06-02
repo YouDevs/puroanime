@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Anime;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Requests\anime\StoreAnimeRequest;
+use App\Http\Requests\anime\FindByIdAnimeRequest;
 
 class AnimeController extends Controller
 {
+    protected $model;
+
+    public function __construct(Anime $model)
+    {
+        $this->model = $model;
+    }
+
     public function index()
     {
-        $animes = Anime::all();
+        $animes = $this->model::all();
         return view('admin.anime.index', ['animes' => $animes] );
     }
 
@@ -22,63 +30,60 @@ class AnimeController extends Controller
         return view('admin.anime.create' );
     }
 
-    public function store(Request $request)
+    public function store(StoreAnimeRequest $request)
     {
-        $validatedData = $request->validate([
-            'title' => ['required', 'string', 'max:255', 'unique:animes'],
-            'description' => ['required', 'string'],
-            'cover_image' => ['required', 'image', 'max:2048'],
-            'thumbnail_image' => ['required', 'image', 'max:2048'],
-        ]);
+        $params = $request->validated();
 
         $coverImagePath = $request->file('cover_image')->store('public/animes/cover_images');
         $thumbnailImagePath = $request->file('thumbnail_image')->store('public/animes/thumbnail_images');
 
-        $anime = new Anime([
-            'title' => $validatedData['title'],
-            'description' => $validatedData['description'],
+        $anime = $this->model->create([
+            'title' => $params['title'],
+            'description' => $params['description'],
             'cover_image' => Storage::url($coverImagePath),
             'thumbnail_image' => Storage::url($thumbnailImagePath),
         ]);
 
         $anime->save();
-
         return redirect()->route('admin.anime.index')->with('success', 'Anime creado con éxito.');
     }
 
-    public function edit(Anime $anime)
+    public function edit($id)
     {
+        $anime = $this->model::find($id);
         return view('admin.anime.edit', compact('anime'));
     }
 
-    public function update(Request $request, Anime $anime)
+    public function update(StoreAnimeRequest $request)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'required',
-            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        $params = $request->validated();
 
         if ($request->hasFile('cover_image')) {
             $coverImagePath = $request->file('cover_image')->store('public/animes/cover_images');
-            $anime->cover_image = Storage::url($coverImagePath);
+            $coverImage = Storage::url($coverImagePath);
         }
 
         if ($request->hasFile('thumbnail_image')) {
             $thumbnailImagePath = $request->file('thumbnail_image')->store('public/animes/thumbnail_images');
-            $anime->thumbnail_image = Storage::url($thumbnailImagePath);
+            $thumbnailImage = Storage::url($thumbnailImagePath);
         }
 
-        $anime->title = $request->input('title');
-        $anime->description = $request->input('description');
-
-        $anime->save();
+        $this->model::where('id', $params['id'])->update([
+            'title' => $params['title'],
+            'description' => $params['description'],
+            'cover_image' => Storage::url($coverImage),
+            'thumbnail_image' => Storage::url($thumbnailImage),
+        ]);     
 
         return redirect()->route('admin.anime.index')->with('success', 'Anime updated successfully!');
     }
 
+    public function destroy(FindByIdAnimeRequest $request) {
+        $params = $request->validated();
 
-
-
+        $anime = $this->model::where('id', $params['id'])->delete();
+        if($anime) {
+            return redirect()->route('admin.anime.index')->with('success', 'Anime deleted successfully!');
+        }
+    }
 }
