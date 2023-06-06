@@ -2,9 +2,10 @@
 
 @section('content')
     <h1>Editar Anime</h1>
-    <form action="{{ route('admin.anime.update', $anime) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.anime.update', ['id' => $anime->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+        
         <div class="form-group mt-2">
             <label for="title">Title</label>
             <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $anime->title) }}">

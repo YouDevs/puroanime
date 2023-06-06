@@ -26,10 +26,13 @@
                                 <td>
                                     <a class="btn btn-sm btn-info" href="{{route('episodes.index', $anime->id)}}">Ver Episodios</a>
 
-                                    <a href="{{ route('admin.anime.edit', $anime) }}" class="btn btn-sm btn-warning">Editar</a>
-                                    <form action="{{ route('admin.anime.destroy', $anime) }}" method="POST" class="d-inline">
+                                    <a href="{{ route('admin.anime.edit', ['id' => $anime->id]) }}" class="btn btn-sm btn-warning">Editar</a>
+
+                                    <form action="{{ route('admin.anime.destroy', $anime->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
+                                        <input type="hidden" name="id" value="{{ $anime->id }}">
+
                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este anime?')">Eliminar</button>
                                     </form>
                                 </td>
