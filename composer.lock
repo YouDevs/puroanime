@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4dc4266d1d5ec374facc5dcbd245bae",
+    "content-hash": "4d0e8c2c23ccf5750bf4aa3e052cbc38",
     "packages": [
         {
             "name": "brick/math",
@@ -5460,6 +5460,63 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "x7media/laravel-planetscale",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/x7media/laravel-planetscale.git",
+                "reference": "a1fee0d782385e1e5ca16964c10c2fd764681205"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/x7media/laravel-planetscale/zipball/a1fee0d782385e1e5ca16964c10c2fd764681205",
+                "reference": "a1fee0d782385e1e5ca16964c10c2fd764681205",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~9|~10"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~7",
+                "phpunit/phpunit": "~9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "X7media\\LaravelPlanetscale\\LaravelPlanetscaleServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "X7media\\LaravelPlanetscale\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "X7 Media, LLC",
+                    "email": "info@x7media.com",
+                    "homepage": "http://x7media.com"
+                }
+            ],
+            "description": "A package for managing Laravel database migrations with Planetscale databases.",
+            "homepage": "https://github.com/x7media/laravel-planetscale",
+            "keywords": [
+                "LaravelPlanetscale",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/x7media/laravel-planetscale/issues",
+                "source": "https://github.com/x7media/laravel-planetscale/tree/v1.1.0"
+            },
+            "time": "2023-05-19T19:23:05+00:00"
         }
     ],
     "packages-dev": [
