@@ -10,8 +10,9 @@
     }],
     "env": {
         "APP_ENV": "production",
+        "APP_KEY": "base64:lDcAUh8GPMuA7eZHC6dxLmhncslLUspme+MNVfjN2Uk=",
         "APP_DEBUG": "true",
-        "APP_URL": "https://yourproductionurl.com",
+        "APP_URL": "https://puroanime-yd.vercel.app/",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
