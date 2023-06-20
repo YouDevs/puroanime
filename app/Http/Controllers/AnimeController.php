@@ -10,6 +10,7 @@ class AnimeController extends Controller
 {
     public function index()
     {
+        // dd($_ENV);
         $animes = Anime::all();
 
         return view('index', ['animes' => $animes]);
