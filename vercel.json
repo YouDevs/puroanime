@@ -5,10 +5,16 @@
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.6.0" }
     },
-    "routes": [{
-        "src": "/(.*)",
-        "dest": "/api/index.php"
-    }],
+    "routes": [
+        {
+            "src": "/build(.)",
+            "dest": "/public/assets/"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        }
+    ],
     "env": {
         "APP_ENV": "production",
         "APP_KEY": "base64:lDcAUh8GPMuA7eZHC6dxLmhncslLUspme+MNVfjN2Uk=",
