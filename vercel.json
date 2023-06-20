@@ -7,12 +7,20 @@
     },
     "routes": [
         {
-            "src": "/build(.)",
-            "dest": "/public/assets/"
+            "src": "/(.*).css",
+            "dest": "/public/build/assets/$1.css"
+        },
+        {
+            "src": "/(.*).js",
+            "dest": "/public/build/assets/$1.js"
+        },
+        {
+            "src": "/",
+            "dest": "/public/index.php"
         },
         {
             "src": "/(.*)",
-            "dest": "/api/index.php"
+            "dest": "/public/$1"
         }
     ],
     "env": {
