@@ -75,7 +75,10 @@
 
 @section('content')
 <div class="container">
-    <div class="hero-banner" style="background-image: url('{{$anime->cover_image}}');">
+    @php
+        $cover_image = 'animes/cover_images/' . $anime->cover_image
+    @endphp
+    <div class="hero-banner" style="background-image: url('{{$cover_image}}');">
         <div class="hero-overlay"></div>
         <div class="container hero-content">
           <h1 class="fs-1">{{$anime->title}}</h1>

@@ -34,14 +34,24 @@ class AnimeController extends Controller
     {
         $params = $request->validated();
 
-        $coverImagePath = $request->file('cover_image')->store('public/animes/cover_images');
-        $thumbnailImagePath = $request->file('thumbnail_image')->store('public/animes/thumbnail_images');
+        // $coverImagePath = $request->file('cover_image')->store('public/animes/cover_images', 'public');
+        // $thumbnailImagePath = $request->file('thumbnail_image')->store('public/animes/thumbnail_images', 'public');
+
+        // Guardar la imagen en la carpeta 'public/animes/cover_images'
+        $coverImage = $request->file('cover_image');
+        $coverImageName = time() . '-' . $coverImage->getClientOriginalName();
+        $coverImage->move(public_path('animes/cover_images'), $coverImageName);
+
+        $thumbnailImage = $request->file('thumbnail_image');
+        $thumbnailImageName = time() . '-' . $thumbnailImage->getClientOriginalName();
+        $thumbnailImage->move(public_path('animes/thumbnail_images'), $thumbnailImageName);
+
 
         $anime = $this->model->create([
             'title' => $params['title'],
             'description' => $params['description'],
-            'cover_image' => Storage::url($coverImagePath),
-            'thumbnail_image' => Storage::url($thumbnailImagePath),
+            'cover_image' => $coverImageName,
+            'thumbnail_image' => $thumbnailImageName,
         ]);
 
         $anime->save();

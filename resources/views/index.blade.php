@@ -12,7 +12,7 @@
         <div class="col-12 col-md-6 col-lg-4 mb-4">
           <div class="card card-anime">
             <a href="{{ route('anime.show', $anime->id) }}">
-              <img src="{{ $anime->thumbnail_image }}" class="card-img img-fluid" alt="">
+              <img src="{{ asset('animes/thumbnail_images/' . $anime->thumbnail_image) }}" class="card-img img-fluid" alt="">
             </a>
             <div class="card-body">
               <a href="{{ route('anime.show', $anime->id) }}" class="text-decoration-none color-light">
